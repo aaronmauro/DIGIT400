@@ -57,6 +57,16 @@ def main():
 def dashboard():
     return render_template("dashboard.html", APP_CONTENT = APP_CONTENT)
 
+@app.route("/introduction-to-app/")
+def templating():
+    try:
+        output = ['DIGIT400 is good','Python, Java, php, SQL, \
+        C++','<p><strong>Hello World</strong></p>', 42,'42']
+        return render_template("templating_demo.html", output = output)
+
+    except Exception as e:
+        return(str(e)) #remove for production
+
 @app.route('/login/', methods=["GET","POST"])
 def login_page():
     error = ''
@@ -131,7 +141,7 @@ def register_page():
         return render_template("register.html", form = form)
 
     except Exception as e:
-        return(str(e))
+        return(str(e)) #remove for production
 
 @app.route("/logout/")
 @login_required
@@ -155,7 +165,7 @@ def sitemap():
         response.headers["Content-Type"] = "application/xml"
         return response
     except Exception as e:
-        return(str(e))
+        return(str(e)) #remove for production
 
 @app.route('/robots.txt/')
 def robots():
