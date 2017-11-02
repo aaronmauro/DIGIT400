@@ -2,58 +2,87 @@
 
 {% block body %}
 
-<h1>Jinja Templating Techniques</h1>
+<div class="container">
+    <h1>Jinja Templating Examples</h1>
 
-<hr>
-<h2>for loops with Python lists</h2>
-
-  {% for o in output %}
-  	<p>{{o}}</p>
-  {% endfor %}
-
-  <hr>
-  <h2>if statements and |int and |string keywords</h2>
-  <!--|string will stringify your output-->
-  {% if output[4]|int > 10 %}
-    <p>42 is greater than 10.</p>
-  {% endif %}
-
-  <hr>
-  <h2>|replace() methods</h2>
-  <p>{{ output[0]|replace('good','AMAZING!!') }}</p>
-
-  <hr>
-  <h2>for loop through string by splitting to list</h2>
-  <ul>
+    <h2>for loop with Jinja</h2>
+    
+    {% for o in output %}
+        <p>{{o}}</p>
+    {% endfor %}
+    
+    <hr>
+    
+    <h2>if statment with Jinja</h2>
+    
+    <!-- |string will similarly convert to strings -->
+    
+    {% if output[3]|int > 10 %}
+        <p>42 is greater than 10.</p>
+    {% endif %}
+    
+    <hr>
+    
+    <h2>replace( ) with Jinja</h2>
+    
+    <p>{{ output[0]|replace('good','AMAZING!!') }}</p>
+    
+    <hr>
+    
+    <h2>loop through a string with .split( ) and make it a list</h2>
+    
+    <ul>
     {% for lang in output[1].split(',') %}
-      <li>{{lang}}</li>
+    
+        <li>{{lang}}</li>
+    
     {% endfor %}
-  </ul>
-
-  <hr>
-  <h2>Render HTML in |safe mode</h2>
-  {{output[2]|safe}}
-
-  <hr>
-  <h2>Render "raw" code with &lt;pre&gt; tags</h2>
-  {% raw %}
-<pre>
-    {% for i in items %}
-      {{item}}
-    {% endfor %}
-</pre>
-  {% endraw %}
-
-  <hr>
-  <h2>Macros for easy inputs and repetitive tags</h2>
-		{% macro input(name, value='', type='text', size=20) -%}
-			<input type="{{ type }}" name="{{ name }}" value="{{
-				value|e }}" size="{{ size }}">
-		{%- endmacro %}
-
-		The macro can then be called like a function in the namespace:
-
-		<p>{{ input('username') }}</p>
-		<p>{{ input('password', type='password') }}</p>
+    </ul>
+    
+    <hr>
+    
+    <h2>Render HTML in Jinja</h2>
+    
+    {{output[2]|safe}}
+    
+    <hr>
+    
+    <h2>Render Code in HTML</h2>
+    
+    {% raw %}
+        <pre>
+        <code>
+        {% for i in items %}
+            {{i}}
+        {% endfor %}
+        </code>
+        </pre>
+    {% endraw %}
+    
+    <hr>
+    
+    <h2>Jinja Macros</h2>
+    
+    {% macro input(name, value='', type='text', size=20) -%}
+    <input type="{{ type }}" name="{{ name }}" value="{{
+        value|e }}" size="{{ size }}">
+    {%- endmacro %}
+    
+    <p>{{ input('username') }}</p>
+    <p>{{ input('password', type='password') }}</p>
+    
+</div>
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

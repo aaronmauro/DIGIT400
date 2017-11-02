@@ -57,14 +57,14 @@ def main():
 def dashboard():
     return render_template("dashboard.html", APP_CONTENT = APP_CONTENT)
 
-@app.route("/introduction-to-app/")
-@login_required
-def templating():
+@app.route('/introduction-to-app/')
+def introapp():
     try:
-        output = ['DIGIT400 is good','Python, Java, php, SQL, \
-        C++','<p><strong>Hello World</strong></p>', 42,'42']
+        output = ['DIGIT 400 is good', 'Python, Java, php, \
+        C++','<p><strong>Hello World!</strong></p>', 42, '42']
+        
         return render_template("templating_demo.html", output = output)
-
+    
     except Exception as e:
         return(str(e)) #remove for production
 
