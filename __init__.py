@@ -58,6 +58,7 @@ def dashboard():
     return render_template("dashboard.html", APP_CONTENT = APP_CONTENT)
 
 @app.route("/introduction-to-app/")
+@login_required
 def templating():
     try:
         output = ['DIGIT400 is good','Python, Java, php, SQL, \
