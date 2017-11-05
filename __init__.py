@@ -149,9 +149,6 @@ def downloader():
         else:
             return render_template('downloader.html')
 
-        flash("Please enter a valid file name or try reuploading your file")
-        return render_template('downloader.html')
-
     except Exception as e:
 		return(str(e))
 

@@ -3,7 +3,7 @@ def Content():
         "Home":[["Jinja Templating","/introduction-to-jinja/"],
                ["File Uploads","/uploads/"],
                ["Download","/download/"],
-               ["Downloader Page", "downloader"]],
+               ["Downloader Page", "/downloader/"]],
         "Profile":[["User Profile","/profile/"],
                   ["Profile Upload","/profile_upload"]],
         "Messages":[["Messages","/messages/"]],
