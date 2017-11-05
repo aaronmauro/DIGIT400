@@ -139,6 +139,22 @@ def download():
 	except Exception as e:
 		return str(e)
 
+@app.route('/downloader/', methods=['GET', 'POST'])
+def downloader():
+    try:
+        if request.method == "POST":
+            filename = request.form['filename']
+            return send_file('/var/www/FlaskApp/FlaskApp/uploads/' + filename, attachment_filename='download')
+
+        else:
+            return render_template('downloader.html')
+
+        flash("Please enter a valid file name or try reuploading your file")
+        return render_template('downloader.html')
+
+    except Exception as e:
+		return(str(e))
+
 class RegistrationForm(Form):
     username = TextField('Username', [validators.Length(min=4, max=20)])
     email = TextField('Email Address', [validators.Length(min=6, max=50)])

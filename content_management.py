@@ -2,7 +2,8 @@ def Content():
     APP_CONTENT = {
         "Home":[["Jinja Templating","/introduction-to-jinja/"],
                ["File Uploads","/uploads/"],
-               ["Download","/download/"]],
+               ["Download","/download/"],
+               ["Downloader Page", "downloader"]],
         "Profile":[["User Profile","/profile/"],
                   ["Profile Upload","/profile_upload"]],
         "Messages":[["Messages","/messages/"]],
