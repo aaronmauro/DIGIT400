@@ -113,44 +113,53 @@ def login_page():
 @app.route('/uploads/', methods=['GET', 'POST'])
 @login_required
 def upload_file():
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        # if user does not select file, browser also
-        # submit a empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            flash('File upload successful')
-            return render_template('uploads.html', filename = filename)
-    return render_template('uploads.html')
+    try:
+        if request.method == 'POST':
+            # check if the post request has the file part
+            if 'file' not in request.files:
+                flash('No file part')
+                return redirect(request.url)
+            file = request.files['file']
+            # if user does not select file, browser also
+            # submit a empty part without filename
+            if file.filename == '':
+                flash('No selected file')
+                return redirect(request.url)
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                flash('File upload successful')
+                return render_template('uploads.html', filename = filename)
+        return render_template('uploads.html')
+    except:
+        flash("Please upload a valid file")
+        return render_template('uploads.html')
 
 @app.route('/download/')
 @login_required
 def download():
 	try:
-		return send_file('/var/www/FlaskApp/FlaskApp/uploads/portrait.jpg', attachment_filename='portrait.jpg')
+		return send_file('/var/www/FlaskApp/FlaskApp/uploads/screencap.png', attachment_filename='screencap.png')
 	except Exception as e:
 		return str(e)
 
 @app.route('/downloader/', methods=['GET', 'POST'])
+@login_required
 def downloader():
+    error = ''
     try:
         if request.method == "POST":
             filename = request.form['filename']
             return send_file('/var/www/FlaskApp/FlaskApp/uploads/' + filename, attachment_filename='download')
 
         else:
-            return render_template('downloader.html')
+            return render_template('downloader.html', error = error)
+        error = "Please enter a valid file name"
+        return render_template('downloader.html',error = error)
 
-    except Exception as e:
-		return(str(e))
+    except:
+        error = "Please enter a valid file name"
+        return render_template('downloader.html',error = error)
 
 class RegistrationForm(Form):
     username = TextField('Username', [validators.Length(min=4, max=20)])
