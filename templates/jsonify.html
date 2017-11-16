@@ -5,6 +5,8 @@
 	<script type="text/javascript">
 		var jQuery__1 = $.noConflict(true);
 	</script>
+
+//Code for JSON handling
 	<script type="text/javascript">
 			jQuery__1(function() {
 			  jQuery__1("a#process_input").bind("click", function() {
@@ -17,11 +19,24 @@
 			  });
 			});
 		</script>
+// Code for animate()
+		<script>
+		jQuery__1( "#go" ).click(function() {
+		  jQuery__1( "#block" ).animate({
+		    width: "70%",
+		    opacity: 0.4,
+		    marginLeft: "0.6in",
+		    fontSize: "3em",
+		    borderWidth: "10px"
+		  }, 1500 );
+		});
+		</script>
 
 </head>
 
 <body>
 	<div class="container">
+		<!-- JSON Example -->
 	<h3>Which is the best programming language of them all?</h3>
 		<form method="post">
 			<input type="text" size="5" name="proglang">
@@ -29,24 +44,10 @@
 		</form>
 	<p id="result"></p>
 
+	<!-- Animate Example -->
+
 	<button id="go">&raquo; Run</button>
 	<div id="block">Hello!</div>
-
-	<script>
-	// Using multiple unit types within one animation.
-
-	jQuery__1( "#go" ).click(function() {
-	  jQuery__1( "#block" ).animate({
-	    width: "70%",
-	    opacity: 0.4,
-	    marginLeft: "0.6in",
-	    fontSize: "3em",
-	    borderWidth: "10px"
-	  }, 1500 );
-	});
-	</script>
-
-
 	</div>
 </body>
 
