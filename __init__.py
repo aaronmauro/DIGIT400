@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, url_for, redirect, request, session, make_response, send_file, send_from_directory
+from flask import Flask, render_template, flash, url_for, redirect, request, session, make_response, send_file, send_from_directory, jsonify
 from wtforms import Form, BooleanField, TextField, PasswordField, validators
 from datetime import datetime, timedelta
 from passlib.hash import sha256_crypt
@@ -70,18 +70,6 @@ def main():
 def dashboard():
     return render_template("dashboard.html", APP_CONTENT = APP_CONTENT)
 
-@app.route('/introduction-to-jinja/')
-@login_required
-def introapp():
-    try:
-        output = ['DIGIT 400 is good', 'Python, Java, php, \
-        C++','<p><strong>Hello World!</strong></p>', 42, '42']
-
-        return render_template("templating_demo.html", output = output)
-
-    except Exception as e:
-        return(str(e)) #remove for production
-
 @app.route('/login/', methods=["GET","POST"])
 def login_page():
     error = ''
@@ -110,6 +98,34 @@ def login_page():
         #flash(e)
         error = "Invalid credentials, try again."
         return render_template("login.html", error = error)
+
+@app.route('/introduction-to-jinja/')
+@login_required
+def introapp():
+    try:
+        output = ['DIGIT 400 is good', 'Python, Java, php, \
+        C++','<p><strong>Hello World!</strong></p>', 42, '42']
+
+        return render_template("templating_demo.html", output = output)
+
+    except Exception as e:
+        return(str(e)) #remove for production
+
+@app.route('/background_process/')
+def background_process():
+	try:
+		lang = request.args.get('proglang', 0, type=str)
+		if lang.lower() == 'python':
+			return jsonify(result='You are wise')
+		else:
+			return jsonify(result='Try again.')
+	except Exception as e:
+		return str(e)
+
+
+@app.route('/jsonify/', methods=['GET', 'POST'])
+def json_stuff():
+    return render_template("jsonify.html")
 
 @app.route('/uploads/', methods=['GET', 'POST'])
 @login_required
