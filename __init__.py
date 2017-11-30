@@ -9,6 +9,7 @@ from werkzeug.utils import secure_filename
 from functools import wraps
 from content_management import Content
 from db_connect import connection
+from library import library
 
 APP_CONTENT = Content()
 
@@ -115,7 +116,7 @@ def introapp():
 @login_required
 def background_process():
     try:
-        
+
         lang = request.args.get('proglang', 0, type=str)
         if lang.lower() == 'python':
             return jsonify(result="You are wise!")
@@ -125,12 +126,12 @@ def background_process():
     except Exception as e:
         return(str(e)) #remove for production
 
-    
+
 @app.route('/jsonify/', methods=['GET', 'POST'])
 @login_required
 def json_stuff():
     try:
-        
+
         return render_template("jsonify.html")
 
     except Exception as e:
@@ -186,6 +187,21 @@ def downloader():
     except:
         error = "Please enter a valid file name"
         return render_template('downloader.html',error = error)
+
+@app.route('/uppercase/', methods=['GET', 'POST'])
+@login_required
+def library_test():
+    try:
+        uppered = ''
+        if request.method == "POST":
+            lower = request.form['upper']
+            uppered = library(lower)
+
+            return render_template("uppercase.html", uppered = uppered)
+
+        return render_template("uppercase.html", uppered = uppered)
+    except Exception as e:
+        return str(e)
 
 class RegistrationForm(Form):
     username = TextField('Username', [validators.Length(min=4, max=20)])
