@@ -1,3 +1,3 @@
 def library(x):
     library = x.upper()
-    return library
+    return library+"!!1!"
