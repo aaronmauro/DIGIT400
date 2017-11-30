@@ -4,6 +4,8 @@
 
 This is a demo site for the students of [Penn State Behrend](http://behrend.psu.edu/)
 
+You can find the live demo of [this code here](https://digit400.party/)
+
 ## We can embed images too!
 
 ![Computer Cat](https://cckate.files.wordpress.com/2010/04/funny-pictures-cat-limits-your-computer-access.jpg)
