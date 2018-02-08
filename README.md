@@ -4,7 +4,7 @@
 
 This is a demo site for the students of [Penn State Behrend](http://behrend.psu.edu/)
 
-You can find the live demo of [this code here](https://digit400.party/)
+You can find the live demo of [this code here](http://165.227.68.146/)
 
 ## We can embed images too!
 
